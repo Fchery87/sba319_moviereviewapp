@@ -2,9 +2,12 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
+import cors from 'cors';
 import usersRouter from './routes/users.js';
 import commentsRouter from './routes/comments.js';
 import reviewsRouter from './routes/reviews.js';
+import moviesRouter from './routes/movies.js';
+
 
 dotenv.config();
 
@@ -14,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 //! ====== MIDDLEWARE ======
-
+app.use(cors()); 
 app.use(morgan('dev'));
 app.use(express.json());
 
@@ -27,8 +30,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', usersRouter);
-app.use('/comments', commentsRouter)
+// app.use('/comments', commentsRouter)
 app.use('/reviews', reviewsRouter)
+app.use('/movies', moviesRouter)
 
 //! ====== GLOBAL HANDLING ======
 
