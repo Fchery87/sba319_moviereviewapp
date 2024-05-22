@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import morgan from 'morgan';
 import cors from 'cors';
 import usersRouter from './routes/users.js';
-import commentsRouter from './routes/comments.js';
+// import commentsRouter from './routes/comments.js';
 import reviewsRouter from './routes/reviews.js';
 import moviesRouter from './routes/movies.js';
 
