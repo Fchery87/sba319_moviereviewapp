@@ -3,13 +3,13 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #e1b382; /* Sand Tan */
-  color: #12343b; /* Night Blue Shadow */
+  background-color: #d4d4dc; /* Silver Fox */
+  color: #393f4d; /* Deep Matte Grey */
 }
 
 header {
-  background-color: #2d545e; /* Night Blue */
-  color: #e1b382; /* Sand Tan */
+  background-color: #1d1e22; /* Dark Slate */
+  color: #feda6a; /* Are ya yellow?! */
   padding: 1rem;
   text-align: center;
 }
@@ -26,7 +26,7 @@ nav ul li {
 }
 
 nav ul li a {
-  color: #e1b382; /* Sand Tan */
+  color: #feda6a; /* Are ya yellow?! */
   text-decoration: none;
 }
 
@@ -41,8 +41,8 @@ main {
 }
 
 .movie-card, .review-card, .user-card {
-  background-color: #ffffff;
-  border: 1px solid #c89666; /* Sand Tan Shadow */
+  background-color: #ffffff; /* White background */
+  border: 1px solid #393f4d; /* Deep Matte Grey border */
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -65,43 +65,43 @@ main {
 }
 
 footer {
-  background-color: #2d545e; /* Night Blue */
-  color: #e1b382; /* Sand Tan */
+  background-color: #1d1e22; /* Dark Slate */
+  color: #feda6a; /* Are ya yellow?! */
   padding: 1rem;
   text-align: center;
 }
 
 form {
-  background-color: #ffffff;
+  background-color: #ffffff; /* White background */
   padding: 1rem;
   border-radius: 8px;
-  border: 1px solid #c89666; /* Sand Tan Shadow */
+  border: 1px solid #393f4d; /* Deep Matte Grey border */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
 }
 
 form h2 {
-  color: #12343b; /* Night Blue Shadow */
+  color: #393f4d; /* Deep Matte Grey */
 }
 
 form label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #12343b; /* Night Blue Shadow */
+  color: #393f4d; /* Deep Matte Grey */
 }
 
 form input, form select, form textarea {
   width: calc(100% - 2rem);
   padding: 0.5rem;
   margin-bottom: 1rem;
-  border: 1px solid #c89666; /* Sand Tan Shadow */
+  border: 1px solid #393f4d; /* Deep Matte Grey border */
   border-radius: 4px;
   box-sizing: border-box;
 }
 
 form button {
-  background-color: #2d545e; /* Night Blue */
-  color: #e1b382; /* Sand Tan */
+  background-color: #feda6a; /* Are ya yellow?! */
+  color: #1d1e22; /* Dark Slate */
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
@@ -109,5 +109,6 @@ form button {
 }
 
 form button:hover {
-  background-color: #12343b; /* Night Blue Shadow */
+  background-color: #393f4d; /* Deep Matte Grey */
+  color: #feda6a; /* Are ya yellow?! */
 }
