@@ -162,4 +162,5 @@ router.delete('/bulk', async (req, res) => {
   }
 });
 
+
 export default router;
