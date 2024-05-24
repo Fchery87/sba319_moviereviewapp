@@ -4,22 +4,12 @@ import { ObjectId } from 'mongodb';
 
 const router = express.Router();
 
-// Sample review document structure
-/**
- * {
- *  "productId": "60c72b2f9b1e8b6f4f4d8f42",
- *  "author": "user123",
- *  "rating": 4.5,
- *  "comment": "Great product!",
- *  "createdAt": "2021-06-13T12:00:00Z"
- * }
- */
-
 // Create a new review - POST /reviews/
 router.post('/', async (req, res) => {
   try {
     const collection = await db.collection('reviews');
     const newReview = req.body;
+    newReview.movieId = new ObjectId(newReview.movieId); // Ensure movieId is an ObjectId
     const result = await collection.insertOne(newReview);
     res.status(201).json(result); // Return full result including insertedId
   } catch (error) {
@@ -28,12 +18,13 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get all reviews - GET /reviews/
+// Get all reviews or reviews by movieId - GET /reviews/
 router.get('/', async (req, res) => {
   try {
     const collection = await db.collection('reviews');
-    const reviews = await collection.find({}).toArray();
-    res.status(200).json(reviews); // Return all reviews in the collection
+    const query = req.query.movieId ? { movieId: new ObjectId(req.query.movieId) } : {};
+    const reviews = await collection.find(query).toArray();
+    res.status(200).json(reviews);
   } catch (error) {
     console.error('Error fetching reviews:', error);
     res.status(500).json({ message: 'Internal server error' });
@@ -49,7 +40,7 @@ router.get('/:id', async (req, res) => {
     if (!review) {
       res.status(404).json({ message: 'Review not found' });
     } else {
-      res.status(200).json(review); // Return the found review
+      res.status(200).json(review);
     }
   } catch (error) {
     console.error('Error fetching review:', error);
@@ -106,7 +97,10 @@ router.delete('/:id', async (req, res) => {
 router.post('/bulk', async (req, res) => {
   try {
     const collection = await db.collection('reviews');
-    const newReviews = req.body;
+    const newReviews = req.body.map(review => ({
+      ...review,
+      movieId: new ObjectId(review.movieId), // Ensure movieId is an ObjectId
+    }));
     const result = await collection.insertMany(newReviews);
     res.status(201).json(result);
   } catch (error) {

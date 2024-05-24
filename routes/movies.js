@@ -9,8 +9,13 @@ const router = express.Router();
  * {
  *  "title": "Inception",
  *  "director": "Christopher Nolan",
+ *  "writers": ["Christopher Nolan"],
+ *  "stars": ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"],
  *  "releaseYear": 2010,
- *  "genre": "Sci-Fi"
+ *  "genre": "Sci-Fi",
+ *  "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
+ *  "imageUrl": "http://example.com/image.jpg",
+ *  "imdbUrl": "http://www.imdb.com/title/tt1375666/"
  * }
  */
 

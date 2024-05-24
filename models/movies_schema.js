@@ -13,6 +13,14 @@ const movieSchema = new Schema({
     required: true,
     trim: true,
   },
+  writers: {
+    type: [String],
+    required: true,
+  },
+  stars: {
+    type: [String],
+    required: true,
+  },
   releaseYear: {
     type: Number,
     required: true,
@@ -21,6 +29,15 @@ const movieSchema = new Schema({
     type: String,
     required: true,
     trim: true,
+  },
+  description: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  imageUrl: {
+    type: String,
+    required: true,
   },
 });
 
