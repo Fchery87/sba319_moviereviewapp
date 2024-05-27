@@ -1,53 +1,39 @@
 import express from 'express';
-import db from '../db/conn.js';
-import { ObjectId } from 'mongodb';
+import User from '../models/users_schema.js';
 
 const router = express.Router();
 
-// Sample user document structure
-/**
- * {
- *  "email": "test@test.com",
- *  "password": "password123",
- *  "username": "testuser1"
- * }
- */
-
-// Create a new user - POST /users/
+// Create a new user
 router.post('/', async (req, res) => {
   try {
-    const collection = await db.collection('users');
-    const newUser = req.body;
-    const result = await collection.insertOne(newUser);
-    res.status(201).json(result); // Return full result including insertedId
+    const newUser = new User(req.body);
+    const result = await newUser.save();
+    res.status(201).json(result);
   } catch (error) {
     console.error('Error creating user:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
 
-// Get all users - GET /users/
+// Get all users
 router.get('/', async (req, res) => {
   try {
-    const collection = await db.collection('users');
-    const users = await collection.find({}).toArray();
-    res.status(200).json(users); // Return all users in the collection
+    const users = await User.find({});
+    res.status(200).json(users);
   } catch (error) {
     console.error('Error fetching users:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
 
-// Get a single user by ID - GET /users/:id
+// Get a single user by ID
 router.get('/:id', async (req, res) => {
   try {
-    const collection = await db.collection('users');
-    const userId = new ObjectId(req.params.id);
-    const user = await collection.findOne({ _id: userId });
+    const user = await User.findById(req.params.id);
     if (!user) {
       res.status(404).json({ message: 'User not found' });
     } else {
-      res.status(200).json(user); // Return the found user
+      res.status(200).json(user);
     }
   } catch (error) {
     console.error('Error fetching user:', error);
@@ -55,20 +41,14 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Update a user by ID - PUT /users/:id
+// Update a user by ID
 router.put('/:id', async (req, res) => {
   try {
-    const collection = await db.collection('users');
-    const userId = new ObjectId(req.params.id);
-    const updatedUser = req.body;
-    const result = await collection.updateOne(
-      { _id: userId },
-      { $set: updatedUser }
-    );
-    if (result.matchedCount === 0) {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!user) {
       res.status(404).json({ message: 'User not found' });
     } else {
-      res.status(200).json({ message: 'User updated successfully' });
+      res.status(200).json(user);
     }
   } catch (error) {
     console.error('Error updating user:', error);
@@ -76,41 +56,29 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Sign in a user - POST /users/signin
+// Sign in a user
 router.post('/signin', async (req, res) => {
   try {
-    const collection = await db.collection('users');
     const { email, password } = req.body;
-    const user = await collection.findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
     if (password !== user.password) {
       return res.status(401).json({ message: 'Incorrect password' });
     }
-    res.status(200).json(user); // Return the user upon successful sign-in
+    res.status(200).json(user);
   } catch (error) {
     console.error('Error signing in user:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
 
-// Delete a user by ID - DELETE /users/:id
+// Delete a user by ID
 router.delete('/:id', async (req, res) => {
   try {
-    const collection = await db.collection('users');
-    let userId;
-    try {
-      userId = new ObjectId(req.params.id);
-    } catch (error) {
-      console.error('Invalid user ID:', error);
-      return res.status(400).json({ message: 'Invalid user ID' });
-    }
-
-    console.log(`Attempting to delete user with ID: ${userId}`);
-
-    const result = await collection.deleteOne({ _id: userId });
-    if (result.deletedCount === 0) {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
       res.status(404).json({ message: 'User not found' });
     } else {
       res.status(200).json({ message: 'User deleted successfully' });
@@ -121,46 +89,16 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// Add multiple users - POST /users/bulk
+// Add multiple users
 router.post('/bulk', async (req, res) => {
   try {
-    const collection = await db.collection('users');
     const newUsers = req.body;
-    const result = await collection.insertMany(newUsers);
+    const result = await User.insertMany(newUsers);
     res.status(201).json(result);
   } catch (error) {
     console.error('Error adding bulk users:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
-// Delete multiple users - DELETE /users/bulk
-router.delete('/bulk', async (req, res) => {
-  try {
-    const collection = await db.collection('users');
-    const userIds = req.body.userIds.map((id) => {
-      try {
-        return new ObjectId(id);
-      } catch (error) {
-        throw new Error(`Invalid ObjectId: ${id}`);
-      }
-    });
-
-    const result = await collection.deleteMany({ _id: { $in: userIds } });
-    if (result.deletedCount === 0) {
-      res.status(404).json({ message: 'No users found to delete' });
-    } else {
-      res.status(200).json({ message: 'Users deleted successfully' });
-    }
-  } catch (error) {
-    console.error('Error deleting multiple users:', error);
-    if (error.message.includes('Invalid ObjectId')) {
-      res.status(400).json({ message: error.message });
-    } else {
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  }
-});
-
 
 export default router;

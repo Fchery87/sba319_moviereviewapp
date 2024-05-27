@@ -6,7 +6,7 @@ const reviewSchema = new Schema({
   movieId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'Movie', // Reference to the Movie model
+    ref: 'Movie',
   },
   author: {
     type: String,

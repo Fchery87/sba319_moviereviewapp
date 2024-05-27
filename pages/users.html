@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../app.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <img src="../images/movie_critics_logo_white.png" alt="Movie Muse Logo" class="logo">
+    <nav>
+        <ul>
+            <li><a href="../index.html" id="home-link">Home</a></li>
+            <li><a href="./movies.html" id="movies-link">Post A Movie</a></li>
+            <li><a href="./reviews.html" id="reviews-link">Reviews</a></li>
+            <li><a href="./users.html" id="users-link">Signup</a></li>
+          </ul>
+    </nav>
+  </header>
+  <div class="banner"><img src="../images/movie critics.webp" alt="Movie Critics Logo" class="logo"></div>
+  
+  <main>
+    <section id="signup-section">
+      <h3>Sign Up</h3>
+      <form id="signup-form" class="review-form">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Sign Up</button>
+      </form>
+    </section>
+    <h2>Users</h2>
+    <section id="users-section">
+      <h3>All Users</h3>
+      <div id="user-list" class="user-list"></div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Movie Critics</p>
+  </footer>
+</body>
+</html>

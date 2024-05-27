@@ -1,16 +1,16 @@
 body {
-  font-family: Poppins, sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #d4d4dc; /* Silver Fox */
-  color: #393f4d; /* Deep Matte Grey */
+  background-color: #f9f8fd; /* White-ish */
+  color: #3d3d3f; /* Scuffed Dark Grey */
 }
 
 header {
-  background-color: #1d1e22; /* Dark Slate */
+  background-color: #3d3d3f; /* Deep Matte Grey */
   color: #feda6a; /* Are ya yellow?! */
-  padding: 1rem;
+  padding: 1em 0;
   text-align: center;
 }
 
@@ -28,24 +28,50 @@ nav ul li {
 nav ul li a {
   color: #feda6a; /* Are ya yellow?! */
   text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #d4d4dc; /* Silver Fox */
+}
+
+header .logo {
+  width: 300px; /* Adjust the size as needed */
+  height: auto;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+.banner {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
 }
 
 main {
   padding: 2rem;
 }
 
-.movie-list {
+.movie-list, .review-list, .user-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2em;
 }
 
 .movie-card, .review-card, .user-card {
-  background-color: #ffffff; /* White background */
-  border: 1px solid #393f4d; /* Deep Matte Grey border */
+  background-color: #393f4d; /* Deep Matte Grey */
+  border: 1px solid #d4d4dc; /* Silver Fox */
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #d4d4dc; /* Silver Fox */
 }
 
 .movie-card img {
@@ -55,8 +81,14 @@ main {
   margin-bottom: 1em;
 }
 
+.movie-card h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: #feda6a; /* Are ya yellow?! */
+  margin-bottom: 0.5em;
+}
+
 .review {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #d4d4dc; /* Silver Fox */
   padding: 0.5rem 0;
 }
 
@@ -64,51 +96,159 @@ main {
   margin: 0.5rem 0;
 }
 
+.review-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5em;
+  padding: 1em;
+}
+
+.review-card {
+  background-color: #393f4d; /* Deep Matte Grey */
+  border: 1px solid #d4d4dc; /* Silver Fox */
+  border-radius: 8px;
+  padding: 1.5em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #d4d4dc; /* Silver Fox */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.review-card h4 {
+  margin: 0;
+  color: #feda6a; /* Are ya yellow?! */
+}
+
+.review-card p {
+  margin: 0.5em 0;
+}
+
+.review-card .review-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9em;
+  color: #feda6a; /* Are ya yellow?! */
+}
+
+.review-card .review-details span {
+  display: flex;
+  align-items: center;
+}
+
+.review-card .review-details span i {
+  margin-right: 0.5em;
+  color: #d4d4dc; /* Silver Fox */
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #393f4d; /* Deep Matte Grey */
+  padding: 20px;
+  border: 1px solid #d4d4dc; /* Silver Fox */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+form h2 {
+  margin-top: 0;
+  color: #d4d4dc; /* Silver Fox */
+}
+
+form label {
+  font-weight: bold;
+  color: #feda6a; /* Are ya yellow?! */
+}
+
+form input, form textarea, form select, form button {
+  padding: 10px;
+  border: 1px solid #3d3d3f; /* Deep Matte Grey */
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f8fd; /* White-ish */
+  color: #3d3d3f; /* Deep Matte Grey */
+}
+
+form input::placeholder, form textarea::placeholder {
+  font-family: 'Poppins', sans-serif;
+  color: #3d3d3f; /* Deep Matte Grey */
+}
+
+form button {
+  background-color: #feda6a; /* Are ya yellow?! */
+  color: #3d3d3f; /* Deep Matte Grey */
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #3d3d3f; /* Deep Matte Grey */
+  color: #feda6a; /* Are ya yellow?! */
+}
+
+.movie-card .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.movie-card .buttons button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #feda6a; /* Are ya yellow?! */
+  color: #3d3d3f; /* Deep Matte Grey */
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+.movie-card .buttons button:hover {
+  background-color: #3d3d3f; /* Deep Matte Grey */
+  color: #feda6a; /* Are ya yellow?! */
+}
+
+.movie-card .reviews, .movie-card .write-review {
+  width: 100%;
+}
+
+select, option {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f8fd; /* White-ish */
+  color: #3d3d3f; /* Deep Matte Grey */
+  border: 1px solid #3d3d3f; /* Deep Matte Grey */
+}
+
+hr.custom-divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, #feda6a, #3d3d3f);
+  margin: 10px 0;
+}
+
 footer {
-  background-color: #1d1e22; /* Dark Slate */
+  background-color: #3d3d3f; /* Deep Matte Grey */
   color: #feda6a; /* Are ya yellow?! */
   padding: 1rem;
   text-align: center;
 }
 
-form {
-  background-color: #ffffff; /* White background */
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid #393f4d; /* Deep Matte Grey border */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-}
-
-form h2 {
-  color: #393f4d; /* Deep Matte Grey */
-}
-
-form label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #393f4d; /* Deep Matte Grey */
-}
-
-form input, form select, form textarea {
-  width: calc(100% - 2rem);
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid #393f4d; /* Deep Matte Grey border */
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-form button {
-  background-color: #feda6a; /* Are ya yellow?! */
-  color: #1d1e22; /* Dark Slate */
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-form button:hover {
-  background-color: #393f4d; /* Deep Matte Grey */
+/* Additional styling for usernames */
+.user-card h3 {
+  font-family: 'Montserrat', sans-serif;
   color: #feda6a; /* Are ya yellow?! */
+  margin-bottom: 0.5em;
 }

@@ -1,17 +1,17 @@
-import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const client = new MongoClient(process.env.ATLAS_URI);
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.ATLAS_URI);
+    console.log("Connected to database");
+  } catch (error) {
+    console.error("Failed to connect to the database", error);
+    process.exit(1); // Exit the process if the database connection fails
+  }
+};
 
-let conn;
+connectDB();
 
-try {
-  conn = await client.connect();
-} catch (e) {
-  console.log(e);
-}
-
-const db = conn.db('sba_319');
-
-export default db;
+export default mongoose;
